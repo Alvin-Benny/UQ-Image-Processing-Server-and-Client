@@ -1,0 +1,337 @@
+URL to view log online:
+https://source.eait.uq.edu.au/viewvc/csse2310-sem1-s4801283/trunk/a4/?view=log
+
+Retrieving logs at Thu May 23 12:26:26 AEST 2024
+------------------------------------------------------------------------
+r1 | uqpsutto | 2024-02-21 19:54:56 +1000 (Wed, 21 Feb 2024) | 1 line
+Changed paths:
+   A /play
+   A /prac
+   A /trunk
+   A /trunk/a1
+   A /trunk/a3
+   A /trunk/a4
+
+Initial repository structure
+
+
+------------------------------------------------------------------------
+r52 | s4801283 | 2024-05-07 15:35:16 +1000 (Tue, 07 May 2024) | 2 lines
+Changed paths:
+   A /trunk/a4/makefile
+   A /trunk/a4/uqimageclient.c
+   A /trunk/a4/uqimageproc.c
+
+Setup C files for the image client and server and began implementing the functionality to parse command line arguments in uqimageclient
+
+
+Index: makefile
+ makefile |   11 +++++++++++
+ 1 file changed, 11 insertions(+)
+Index: uqimageclient.c
+ uqimageclient.c |   99 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)
+Index: uqimageproc.c
+ uqimageproc.c |    5 +++++
+ 1 file changed, 5 insertions(+)
+
+------------------------------------------------------------------------
+r53 | s4801283 | 2024-05-07 17:23:38 +1000 (Tue, 07 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+   M /trunk/a4/uqimageproc.c
+
+Implemented file checking functionality to ensure the program checks if the input file can be opened for reading and output file can be opened for writing
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   99 +++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 77 insertions(+), 22 deletions(-)
+Index: uqimageproc.c
+ uqimageproc.c |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r54 | s4801283 | 2024-05-07 19:05:38 +1000 (Tue, 07 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+
+Implemented a working draft of the port checking process that outputs an exit status and error message if unable to connect to the server on the specified port
+
+
+Index: uqimageclient.c
+ uqimageclient.c |  102 ++++++++++++++++++++++++++++++++++++++++++++------------
+ 1 file changed, 81 insertions(+), 21 deletions(-)
+
+------------------------------------------------------------------------
+r55 | s4801283 | 2024-05-07 19:28:10 +1000 (Tue, 07 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/makefile
+   M /trunk/a4/uqimageclient.c
+
+Changed the way the libraries in the makefile were linked so that uqimageclient is not linked to the provided FreeImage library and avoid any unfreed memory from the library itself
+
+
+Index: makefile
+ makefile |    8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+Index: uqimageclient.c
+ uqimageclient.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+------------------------------------------------------------------------
+r56 | s4801283 | 2024-05-12 17:12:49 +1000 (Sun, 12 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+
+Implemented functionality in uqimageclient to construct and send HTTP requests and responses as well as converting the provided program parameters into a valid request address sequence
+
+
+Index: uqimageclient.c
+ uqimageclient.c |  164 +++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 151 insertions(+), 13 deletions(-)
+
+------------------------------------------------------------------------
+r57 | s4801283 | 2024-05-12 18:53:39 +1000 (Sun, 12 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+
+Implemented functionality to save the body of HTTP response to a specified output file if the HTTP response status is 200 with other error handling if this is not the case
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   53 ++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 36 insertions(+), 17 deletions(-)
+
+------------------------------------------------------------------------
+r58 | s4801283 | 2024-05-13 16:03:59 +1000 (Mon, 13 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/makefile
+   M /trunk/a4/uqimageclient.c
+   M /trunk/a4/uqimageproc.c
+
+Implemented command line parsing and checking functionality for uqimageproc and also added pthread flag to makefile to facitiliate multithreading
+
+
+Index: makefile
+ makefile |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Index: uqimageclient.c
+ uqimageclient.c |   16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+Index: uqimageproc.c
+ uqimageproc.c |   58 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 56 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
+r59 | s4801283 | 2024-05-14 14:33:27 +1000 (Tue, 14 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+
+Fixed bugs revealed through tests in code that ensures that port number cannot be an empty string and that the client correctly outputs http error responses without errors
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   31 ++++++++++++++-----------------
+ 1 file changed, 14 insertions(+), 17 deletions(-)
+
+------------------------------------------------------------------------
+r60 | s4801283 | 2024-05-15 22:01:59 +1000 (Wed, 15 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+   M /trunk/a4/uqimageproc.c
+
+Added functionality to uqimageclient which now successfuly prints the correct message when any part of the port connection process fails and also added signal handling to ignore the SIGPIPE signal. Also added further comments and documentation.
+
+
+Index: uqimageclient.c
+ uqimageclient.c |  199 ++++++++++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 152 insertions(+), 47 deletions(-)
+Index: uqimageproc.c
+ uqimageproc.c |   57 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 56 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r61 | s4801283 | 2024-05-16 18:49:14 +1000 (Thu, 16 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Setup uqimageproc to listen and print out the port number including ephemeral ports
+
+
+Index: uqimageproc.c
+ uqimageproc.c |  109 ++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 98 insertions(+), 11 deletions(-)
+
+------------------------------------------------------------------------
+r62 | s4801283 | 2024-05-18 12:03:15 +1000 (Sat, 18 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Setup server to provide a working home page response
+
+
+Index: uqimageproc.c
+ uqimageproc.c |   71 +++++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 65 insertions(+), 6 deletions(-)
+
+------------------------------------------------------------------------
+r63 | s4801283 | 2024-05-18 15:06:35 +1000 (Sat, 18 May 2024) | 5 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Managed to get the server to correctly output error responses when provided with invalid GET and POST requests
+-This line, and those below, will be ignored--
+
+M    uqimageproc.c
+
+
+Index: uqimageproc.c
+ uqimageproc.c |  134 ++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 125 insertions(+), 9 deletions(-)
+
+------------------------------------------------------------------------
+r64 | s4801283 | 2024-05-18 20:30:03 +1000 (Sat, 18 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/makefile
+   M /trunk/a4/uqimageproc.c
+
+In uqimageproc I corrected functionality to check if the provided operations in the Http request are valid and did some refactoring to the client_thread method to reduce function length. In the makefile I reconfigured it to properly link with the provided image libraries
+
+
+Index: makefile
+ makefile |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Index: uqimageproc.c
+ uqimageproc.c |   62 +++++++++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 42 insertions(+), 20 deletions(-)
+
+------------------------------------------------------------------------
+r65 | s4801283 | 2024-05-19 12:07:30 +1000 (Sun, 19 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+uqimageproc now correctly handles a single rotate operation and returns the modified image to the client
+
+
+Index: uqimageproc.c
+ uqimageproc.c |   66 ++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 57 insertions(+), 9 deletions(-)
+
+------------------------------------------------------------------------
+r66 | s4801283 | 2024-05-19 12:40:39 +1000 (Sun, 19 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+uqimageproc now successfuly accepts, performs, and returns flip and scale arguments to the provided image
+
+
+Index: uqimageproc.c
+ uqimageproc.c |   15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+------------------------------------------------------------------------
+r67 | s4801283 | 2024-05-19 14:56:04 +1000 (Sun, 19 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Reconfigured uqimageproc to use two separate streams for reading and writing and prevent any strange file descriptor behaviour
+
+
+Index: uqimageproc.c
+ uqimageproc.c |   15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+------------------------------------------------------------------------
+r68 | s4801283 | 2024-05-20 11:20:40 +1000 (Mon, 20 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+
+Reconfigured uqimageclient so that memory is freed before exiting in different paths through the program and also added additional comments, especially descriptions of parameters
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   73 +++++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 52 insertions(+), 21 deletions(-)
+
+------------------------------------------------------------------------
+r69 | s4801283 | 2024-05-20 13:08:46 +1000 (Mon, 20 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Refactored and modularised methods in uqimageproc to align with the style requirements
+
+
+Index: uqimageproc.c
+ uqimageproc.c |  154 ++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 98 insertions(+), 56 deletions(-)
+
+------------------------------------------------------------------------
+r70 | s4801283 | 2024-05-20 19:05:21 +1000 (Mon, 20 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Implemented semaphores in uqimageproc to limit the number of connections based on the maxClient argument
+
+
+Index: uqimageproc.c
+ uqimageproc.c |   65 +++++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 49 insertions(+), 16 deletions(-)
+
+------------------------------------------------------------------------
+r71 | s4801283 | 2024-05-20 20:03:35 +1000 (Mon, 20 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+   M /trunk/a4/uqimageproc.c
+
+Modified both uqimageproc and uqimageclient to accept integer arguments prefixed with a plus '+' sign
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
+Index: uqimageproc.c
+ uqimageproc.c |   25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
+
+------------------------------------------------------------------------
+r72 | s4801283 | 2024-05-21 18:12:31 +1000 (Tue, 21 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageclient.c
+   M /trunk/a4/uqimageproc.c
+
+Added additional function comments and documentation to both uqimageclient and uqimageproc
+
+
+Index: uqimageclient.c
+ uqimageclient.c |   18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
+Index: uqimageproc.c
+ uqimageproc.c |  215 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 205 insertions(+), 10 deletions(-)
+
+------------------------------------------------------------------------
+r73 | s4801283 | 2024-05-22 23:21:50 +1000 (Wed, 22 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Added functionality to print server statistics to stderr such as the number of connected clients, successful HTTP requests etc
+
+
+Index: uqimageproc.c
+ uqimageproc.c |  235 +++++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 177 insertions(+), 58 deletions(-)
+
+------------------------------------------------------------------------
+r74 | s4801283 | 2024-05-23 12:26:03 +1000 (Thu, 23 May 2024) | 2 lines
+Changed paths:
+   M /trunk/a4/uqimageproc.c
+
+Added additional documentation and code references to uqimageproc
+
+
+Index: uqimageproc.c
+ uqimageproc.c |    6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+------------------------------------------------------------------------
